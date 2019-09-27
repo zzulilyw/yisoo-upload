@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yisoo.dao.GroupInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yisoo.bean.GroupInfo">
+    <id column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="g_number" jdbcType="VARCHAR" property="gNumber" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_group" jdbcType="VARCHAR" property="gGroup" />
+    <result column="g_email" jdbcType="VARCHAR" property="gEmail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    g_id, group_id, g_number, g_name, g_group, g_email
+  </sql>
+  <select id="selectByExample" parameterType="com.yisoo.bean.GroupInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from groupinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groupinfo
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from groupinfo
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yisoo.bean.GroupInfoExample">
+    delete from groupinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yisoo.bean.GroupInfo">
+    insert into groupinfo (g_id, group_id, g_number, 
+      g_name, g_group, g_email
+      )
+    values (#{gId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{gNumber,jdbcType=VARCHAR}, 
+      #{gName,jdbcType=VARCHAR}, #{gGroup,jdbcType=VARCHAR}, #{gEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yisoo.bean.GroupInfo">
+    insert into groupinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        g_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="gNumber != null">
+        g_number,
+      </if>
+      <if test="gName != null">
+        g_name,
+      </if>
+      <if test="gGroup != null">
+        g_group,
+      </if>
+      <if test="gEmail != null">
+        g_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="gNumber != null">
+        #{gNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gGroup != null">
+        #{gGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="gEmail != null">
+        #{gEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yisoo.bean.GroupInfoExample" resultType="java.lang.Long">
+    select count(*) from groupinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update groupinfo
+    <set>
+      <if test="record.gId != null">
+        g_id = #{record.gId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gNumber != null">
+        g_number = #{record.gNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gName != null">
+        g_name = #{record.gName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gGroup != null">
+        g_group = #{record.gGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gEmail != null">
+        g_email = #{record.gEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update groupinfo
+    set g_id = #{record.gId,jdbcType=INTEGER},
+      group_id = #{record.groupId,jdbcType=INTEGER},
+      g_number = #{record.gNumber,jdbcType=VARCHAR},
+      g_name = #{record.gName,jdbcType=VARCHAR},
+      g_group = #{record.gGroup,jdbcType=VARCHAR},
+      g_email = #{record.gEmail,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yisoo.bean.GroupInfo">
+    update groupinfo
+    <set>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="gNumber != null">
+        g_number = #{gNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gGroup != null">
+        g_group = #{gGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="gEmail != null">
+        g_email = #{gEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yisoo.bean.GroupInfo">
+    update groupinfo
+    set group_id = #{groupId,jdbcType=INTEGER},
+      g_number = #{gNumber,jdbcType=VARCHAR},
+      g_name = #{gName,jdbcType=VARCHAR},
+      g_group = #{gGroup,jdbcType=VARCHAR},
+      g_email = #{gEmail,jdbcType=VARCHAR}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+</mapper>

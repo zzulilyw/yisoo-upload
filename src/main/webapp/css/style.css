@@ -1,0 +1,50 @@
+.navbar-fixed {
+    width:100%;
+    height:30px;
+    top:5px;
+    left:0;
+    z-index:9999;
+    position: relative;
+}
+.navbar-fixed-text-color {
+    color: white;
+}
+.navbar-brand-text{
+    font-size: 25px
+}
+.navbar-brand-text-sm{
+    font-size: 21px
+}
+.text-color-black{
+    color:black;
+}
+.upload_main_bg00{
+    background-image: url(../img/u_bg00.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    /* opacity:0.5; */
+}
+.upload_main_bg01{
+    background-image: url(../img/u_bg01.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    /* opacity:0.5; */
+}
+.upload_main_bg02{
+    background-image: url(../img/u_bg02.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+.upload_main_bg03{
+    background-image: url(../img/u_bg03.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    color:white;
+}
+.white-text{
+    color:white;
+}
